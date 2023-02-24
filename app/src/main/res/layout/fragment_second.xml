@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".SecondFragment">
+
+    <Spinner
+        android:id="@+id/spinner_dictionary"
+        android:layout_width="297dp"
+        android:layout_height="48dp"
+        android:layout_marginStart="57dp"
+        android:layout_marginTop="28dp"
+        android:layout_marginEnd="57dp"
+        android:entries="@array/spinner_dictionary"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/spinner_timer" />
+
+    <CheckBox
+        android:id="@+id/checkbox_autocomplete"
+        android:layout_width="297dp"
+        android:layout_height="61dp"
+        android:layout_marginTop="36dp"
+        android:text="@string/checkbox_autocomplete"
+        app:layout_constraintEnd_toEndOf="@+id/checkbox_lose"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/checkbox_lose"
+        app:layout_constraintTop_toBottomOf="@+id/checkbox_vibro" />
+
+    <CheckBox
+        android:id="@+id/checkbox_vibro"
+        android:layout_width="297dp"
+        android:layout_height="61dp"
+        android:layout_marginTop="104dp"
+        android:text="@string/checkbox_vibro"
+        app:layout_constraintEnd_toEndOf="@+id/checkbox_autocomplete"
+        app:layout_constraintStart_toStartOf="@+id/checkbox_autocomplete"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <CheckBox
+        android:id="@+id/checkbox_lose"
+        android:layout_width="297dp"
+        android:layout_height="61dp"
+        android:layout_marginStart="57dp"
+        android:layout_marginTop="36dp"
+        android:layout_marginEnd="57dp"
+        android:text="@string/checkbox_lose"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/checkbox_autocomplete" />
+
+    <TextView
+        android:id="@+id/textview_second"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <android.support.constraint.Group
+        android:id="@+id/group"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:constraint_referenced_ids="checkbox_vibro,checkbox_lose,checkbox_autocomplete"
+        app:layout_constraintBottom_toTopOf="parent"
+        app:layout_constraintEnd_toStartOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Spinner
+        android:id="@+id/spinner_timer"
+        android:layout_width="297dp"
+        android:layout_height="48dp"
+        android:layout_marginStart="57dp"
+        android:layout_marginTop="59dp"
+        android:layout_marginEnd="57dp"
+        android:entries="@array/spinner_timer"
+        android:spinnerMode="dropdown"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/checkbox_lose" />
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="413dp"
+        android:layout_height="69dp"
+        android:background="#D9D9D9"
+        android:elevation="16dp"
+        android:layoutMode="opticalBounds"
+        android:minHeight="?attr/actionBarSize"
+        android:paddingLeft="36dp"
+        android:paddingRight="16dp"
+        android:theme="?attr/actionBarTheme"
+        app:contentInsetStart="72dp"
+        app:contentInsetStartWithNavigation="72dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:navigationIcon="@drawable/arrow_back"
+        app:title="@string/top_bar_settings"
+        app:titleMargin="16dp" />
+
+</android.support.constraint.ConstraintLayout>
