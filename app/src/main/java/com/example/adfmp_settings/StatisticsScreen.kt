@@ -28,7 +28,9 @@ class StatisticsScreen : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
+        binding.toolbarStats.setNavigationOnClickListener {
+            findNavController().navigate(R.id.action_statisticsScreen_to_FirstFragment)
+        }
     }
 
     override fun onDestroyView() {
