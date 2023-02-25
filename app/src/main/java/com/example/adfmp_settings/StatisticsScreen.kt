@@ -6,14 +6,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
-import com.example.adfmp_settings.databinding.FragmentFirstBinding
+import com.example.adfmp_settings.databinding.StatisticsScreenBinding
 
-/**
- * A simple [Fragment] subclass as the default destination in the navigation.
- */
-class FirstFragment : Fragment() {
 
-    private var _binding: FragmentFirstBinding? = null
+class StatisticsScreen : Fragment() {
+    private var _binding: StatisticsScreenBinding? = null
 
     // This property is only valid between onCreateView and
     // onDestroyView.
@@ -24,7 +21,7 @@ class FirstFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
 
-        _binding = FragmentFirstBinding.inflate(inflater, container, false)
+        _binding = StatisticsScreenBinding.inflate(inflater, container, false)
         return binding.root
 
     }
@@ -32,13 +29,6 @@ class FirstFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        binding.settingsButton.setOnClickListener {
-            findNavController().navigate(R.id.action_FirstFragment_to_SecondFragment)
-        }
-
-        binding.statisticsButton.setOnClickListener {
-            findNavController().navigate(R.id.action_FirstFragment_to_statisticsScreen)
-        }
     }
 
     override fun onDestroyView() {
