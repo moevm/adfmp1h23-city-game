@@ -42,6 +42,10 @@ class FirstFragment : Fragment() {
             findNavController().navigate(R.id.action_FirstFragment_to_statisticsScreen)
         }
 
+        binding.buttonAbout.setOnClickListener {
+            findNavController().navigate(R.id.action_FirstFragment_to_aboutScreen)
+        }
+
         getView()?.findViewById<Button>(R.id.button_play_bot)?.setOnClickListener {
             val intentToGameActivity = Intent(requireContext(), GameActivity::class.java)
             // todo: spawn a modal dialog, put name as extra to Intent

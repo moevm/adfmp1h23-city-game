@@ -16,6 +16,9 @@
         <action
             android:id="@+id/action_FirstFragment_to_statisticsScreen"
             app:destination="@id/statisticsScreen" />
+        <action
+            android:id="@+id/action_FirstFragment_to_aboutScreen"
+            app:destination="@+id/AboutFragment"/>
     </fragment>
     <fragment
         android:id="@+id/SecondFragment"
@@ -33,6 +36,11 @@
         <action
             android:id="@+id/action_statisticsScreen_to_FirstFragment"
             app:destination="@id/FirstFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/AboutFragment"
+        android:name="com.example.adfmp_settings.AboutFragment"
+        android:label="AboutScreen" >
     </fragment>
 
 </navigation>
