@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".AboutFragment"
+    android:id="@+id/AboutFragment">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="О приложении"
+            android:layout_gravity="center_horizontal"
+            android:textStyle="bold"/>
+
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Приложение для игры в города и другие виды игр в слова. Версия 0.0.0"
+            android:paddingStart="10dp"
+            android:paddingEnd="10dp"/>
+
+        <TextView
+            android:id="@+id/textView3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Авторы"
+            android:layout_gravity="center_horizontal"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/textView4"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Микулик Даниил, студент СПбГЭТУ &quot;ЛЭТИ&quot;"
+            android:paddingStart="10dp"
+            android:paddingEnd="10dp"/>
+
+        <TextView
+            android:id="@+id/textView5"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Молодцев Данила, студент СПбГЭТУ &quot;ЛЭТИ&quot;"
+            android:paddingStart="10dp"
+            android:paddingEnd="10dp"/>
+
+        <TextView
+            android:id="@+id/textView6"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Эйсвальд Михаил, студент СПбГЭТУ &quot;ЛЭТИ&quot;"
+            android:paddingStart="10dp"
+            android:paddingEnd="10dp"/>
+
+    </LinearLayout>
+</FrameLayout>
