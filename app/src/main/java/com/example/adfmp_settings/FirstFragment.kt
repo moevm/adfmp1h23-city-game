@@ -1,10 +1,12 @@
 package com.example.adfmp_settings
 
+import android.content.Intent
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import androidx.navigation.fragment.findNavController
 import com.example.adfmp_settings.databinding.FragmentFirstBinding
 
@@ -38,6 +40,19 @@ class FirstFragment : Fragment() {
 
         binding.statisticsButton.setOnClickListener {
             findNavController().navigate(R.id.action_FirstFragment_to_statisticsScreen)
+        }
+
+        getView()?.findViewById<Button>(R.id.button_play_bot)?.setOnClickListener {
+            val intentToGameActivity = Intent(requireContext(), GameActivity::class.java)
+            // todo: spawn a modal dialog, put name as extra to Intent
+            // todo: setup bot
+            startActivity(intentToGameActivity)
+        }
+
+        getView()?.findViewById<Button>(R.id.button_play_hotseat)?.setOnClickListener {
+            val intentToGameActivity = Intent(requireContext(), GameActivity::class.java)
+            // todo: spawn a modal dialog, put name as extra to Intent x2
+            startActivity(intentToGameActivity)
         }
     }
 
