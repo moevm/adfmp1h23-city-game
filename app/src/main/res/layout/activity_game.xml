@@ -6,183 +6,212 @@
     android:layout_height="match_parent"
     tools:context=".GameActivity" >
 
-    <android.support.constraint.ConstraintLayout
+    <FrameLayout
+        android:id="@+id/frameLayout"
         android:layout_width="match_parent"
         android:layout_height="120dp"
-        android:orientation="vertical"
-        app:layout_constraintTop_toTopOf="parent"
-        android:background="#D9D9D9"
-        android:id="@+id/topBar">
+        app:layout_constraintTop_toTopOf="parent">
+
         <android.support.constraint.ConstraintLayout
+            android:id="@+id/topBar"
             android:layout_width="match_parent"
-            android:layout_height="60dp"
-            android:padding="10dp"
-            app:layout_constraintTop_toTopOf="parent" >
+            android:layout_height="120dp"
+            android:background="#D9D9D9"
+            android:orientation="vertical">
 
-            <TextView
-                android:id="@+id/PlayerName"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:gravity="center_vertical"
-                android:text="Игрок 1"
-                android:textColor="@color/black"
-                android:textSize="30sp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+            <android.support.constraint.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:padding="10dp"
+                app:layout_constraintTop_toTopOf="parent">
 
-            <LinearLayout
-                android:id="@+id/linearLayout2"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent" >
+                <TextView
+                    android:id="@+id/PlayerName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:gravity="center_vertical"
+                    android:text="Игрок 1"
+                    android:textColor="@color/black"
+                    android:textSize="30sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
-                <ImageButton
-                    android:id="@+id/buttonConcede"
+                <LinearLayout
+                    android:id="@+id/linearLayout2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <ImageButton
+                        android:id="@+id/buttonConcede"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="#D9D9D9"
+                        app:srcCompat="@drawable/flag" />
+
+                    <ImageButton
+                        android:id="@+id/buttonPause"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="#D9D9D9"
+                        app:srcCompat="@drawable/pause" />
+
+                    <ImageButton
+                        android:id="@+id/buttonHome"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="#D9D9D9"
+                        app:srcCompat="@drawable/home" />
+
+                </LinearLayout>
+
+            </android.support.constraint.ConstraintLayout>
+
+            <android.support.constraint.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:padding="10dp"
+                app:layout_constraintBottom_toBottomOf="parent">
+
+                <ImageView
+                    android:id="@+id/imageViewTimer"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:background="#D9D9D9"
-                    app:srcCompat="@drawable/flag" />
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:srcCompat="@drawable/timer" />
 
-                <ImageButton
-                    android:id="@+id/buttonPause"
+                <TextView
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:background="#D9D9D9"
-                    app:srcCompat="@drawable/pause" />
-
-                <ImageButton
-                    android:id="@+id/buttonHome"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:background="#D9D9D9"
-                    app:srcCompat="@drawable/home" />
-
-            </LinearLayout>
-
+                    android:layout_height="match_parent"
+                    android:gravity="top"
+                    android:paddingLeft="10dp"
+                    android:text="120 сек."
+                    android:textColor="@color/black"
+                    android:textSize="30sp"
+                    app:layout_constraintStart_toEndOf="@id/imageViewTimer"
+                    app:layout_constraintTop_toTopOf="parent" />
+            </android.support.constraint.ConstraintLayout>
         </android.support.constraint.ConstraintLayout>
-        <android.support.constraint.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_height="60dp"
-            android:padding="10dp"
-            app:layout_constraintBottom_toBottomOf="parent" >
+    </FrameLayout>
 
-            <ImageView
-                android:id="@+id/imageViewTimer"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                app:srcCompat="@drawable/timer"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintStart_toEndOf="@id/imageViewTimer"
-                android:paddingLeft="10dp"
-                android:text="120 сек."
-                android:textColor="@color/black"
-                android:textSize="30sp"
-                android:gravity="top"/>
-        </android.support.constraint.ConstraintLayout>
-    </android.support.constraint.ConstraintLayout>
-    
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintTop_toBottomOf="@id/topBar">
+        app:layout_constraintTop_toBottomOf="@+id/frameLayout">
         <TextView
             android:id="@+id/textViewGameLog"
             android:layout_width="match_parent"
             android:layout_height="40dp"
             android:layout_gravity="left"
             android:gravity="left"
-            android:textSize="30sp"
+            android:paddingLeft="10dp"
             android:text="Ход игры:"
-            android:paddingLeft="10dp"/>
-        <LinearLayout
+            android:textSize="30sp" />
+        <ScrollView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            app:layout_constraintTop_toBottomOf="@id/textViewGameLog"
-            android:layout_marginTop="20dp">
-            <TextView
-                android:layout_width="wrap_content"
+            app:layout_constraintTop_toBottomOf="@+id/textViewGameLog">
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textSize="30sp"
-                android:textColor="@color/black"
-                android:text="Дербент"
-                android:paddingStart="10dp"
-                android:paddingEnd="10dp" />
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="15sp"
-                android:text="Игрок 1"
-                android:paddingStart="10dp"
-                android:paddingEnd="10dp" />
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="30sp"
-                android:textColor="@color/black"
-                android:text="Тихвин"
-                android:paddingStart="10dp"
-                android:paddingEnd="10dp"
-                android:layout_gravity="right"/>
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="15sp"
-                android:text="Игрок 2"
-                android:paddingStart="10dp"
-                android:paddingEnd="10dp"
-                android:layout_gravity="right" />
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="30sp"
-                android:textColor="@color/black"
-                android:text="Нью-Йорк"
-                android:paddingStart="10dp"
-                android:paddingEnd="10dp" />
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="15sp"
-                android:text="Игрок 1"
-                android:paddingStart="10dp"
-                android:paddingEnd="10dp" />
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="30sp"
-                android:textColor="@color/black"
-                android:text="Крунг Тхеп Маха Накхон"
-                android:paddingStart="10dp"
-                android:paddingEnd="10dp"
-                android:layout_gravity="right"/>
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="15sp"
-                android:text="Игрок 2"
-                android:paddingStart="10dp"
-                android:paddingEnd="10dp"
-                android:layout_gravity="right" />
-        </LinearLayout>
+                android:layout_marginTop="20dp"
+                android:orientation="vertical"
+                app:layout_constraintTop_toBottomOf="@id/textViewGameLog">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingStart="10dp"
+                    android:paddingEnd="10dp"
+                    android:text="Дербент"
+                    android:textColor="@color/black"
+                    android:textSize="30sp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingStart="10dp"
+                    android:paddingEnd="10dp"
+                    android:text="Игрок 1"
+                    android:textSize="15sp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="right"
+                    android:gravity="right"
+                    android:paddingStart="10dp"
+                    android:paddingEnd="10dp"
+                    android:text="Тихвин"
+                    android:textColor="@color/black"
+                    android:textSize="30sp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="right"
+                    android:gravity="right"
+                    android:paddingStart="10dp"
+                    android:paddingEnd="10dp"
+                    android:text="Игрок 2"
+                    android:textSize="15sp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingStart="10dp"
+                    android:paddingEnd="10dp"
+                    android:text="Нью-Йорк"
+                    android:textColor="@color/black"
+                    android:textSize="30sp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingStart="10dp"
+                    android:paddingEnd="10dp"
+                    android:text="Игрок 1"
+                    android:textSize="15sp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="right"
+                    android:gravity="right"
+                    android:paddingStart="10dp"
+                    android:paddingEnd="10dp"
+                    android:text="Крунг Тхеп Маха Накхон"
+                    android:textColor="@color/black"
+                    android:textSize="30sp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="right"
+                    android:gravity="right"
+                    android:paddingStart="10dp"
+                    android:paddingEnd="10dp"
+                    android:text="Игрок 2"
+                    android:textSize="15sp" />
+
+            </LinearLayout>
+        </ScrollView>
+
     </LinearLayout>
     <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="parent">
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:id="@+id/inputArea">
         <EditText
             android:layout_width="340dp"
             android:layout_height="match_parent"
-            android:layout_margin="10dp"
+            android:padding="10dp"
             app:layout_constraintStart_toStartOf="parent"
+            android:background="#FFFFFF"
             android:inputType="text|textNoSuggestions" />
 
         <ImageButton
