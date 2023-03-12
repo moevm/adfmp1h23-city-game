@@ -11,6 +11,10 @@ import android.view.Menu
 import android.view.MenuItem
 import com.example.adfmp_settings.databinding.ActivityMainBinding
 
+fun dpToPixels(dp: Int, scale: Float): Int {
+    return (dp*scale + 0.5f).toInt()
+}
+
 class MainActivity : AppCompatActivity() {
 
     private lateinit var appBarConfiguration: AppBarConfiguration
