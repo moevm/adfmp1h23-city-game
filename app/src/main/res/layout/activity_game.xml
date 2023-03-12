@@ -110,10 +110,13 @@
             android:paddingLeft="10dp"
             android:text="Ход игры:"
             android:textSize="30sp" />
+
         <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:layout_constraintTop_toBottomOf="@+id/textViewGameLog">
+            android:layout_height="440dp"
+            app:layout_constraintTop_toBottomOf="@+id/textViewGameLog"
+            app:layout_constraintBottom_toTopOf="@id/inputArea" >
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -184,6 +187,88 @@
                     android:paddingStart="10dp"
                     android:paddingEnd="10dp"
                     android:text="Крунг Тхеп Маха Накхон"
+                    android:textColor="@color/black"
+                    android:textSize="30sp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="right"
+                    android:gravity="right"
+                    android:paddingStart="10dp"
+                    android:paddingEnd="10dp"
+                    android:text="Игрок 2"
+                    android:textSize="15sp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingStart="10dp"
+                    android:paddingEnd="10dp"
+                    android:text="Новосибирск"
+                    android:textColor="@color/black"
+                    android:textSize="30sp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingStart="10dp"
+                    android:paddingEnd="10dp"
+                    android:text="Игрок 1"
+                    android:textSize="15sp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="right"
+                    android:gravity="right"
+                    android:paddingStart="10dp"
+                    android:paddingEnd="10dp"
+                    android:text="Комсомольск-на-Амуре"
+                    android:textColor="@color/black"
+                    android:textSize="30sp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="right"
+                    android:gravity="right"
+                    android:paddingStart="10dp"
+                    android:paddingEnd="10dp"
+                    android:text="Игрок 2"
+                    android:textSize="15sp" />
+
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="right"
+                    android:gravity="right"
+                    android:paddingStart="10dp"
+                    android:paddingEnd="10dp"
+                    android:text="Комсомольск-на-Амуре"
+                    android:textColor="@color/black"
+                    android:textSize="30sp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="right"
+                    android:gravity="right"
+                    android:paddingStart="10dp"
+                    android:paddingEnd="10dp"
+                    android:text="Игрок 2"
+                    android:textSize="15sp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="right"
+                    android:gravity="right"
+                    android:paddingStart="10dp"
+                    android:paddingEnd="10dp"
+                    android:text="Комсомольск-на-Амуре"
                     android:textColor="@color/black"
                     android:textSize="30sp" />
 
