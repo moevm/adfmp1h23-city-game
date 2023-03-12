@@ -12,6 +12,11 @@ import com.example.adfmp_settings.databinding.FragmentSettingsBinding
  * A simple [Fragment] subclass as the second destination in the navigation.
  */
 class SettingsFragment : Fragment() {
+    var isVibro : Boolean = false;
+    var isAutoComplete : Boolean = false;
+    var isAutoLoseExit : Boolean = false;
+    var TurnTimeInMinutes : Number = 1;
+    var CurrentWordsPackage : String = "Cities";
 
     private var _binding: FragmentSettingsBinding? = null
 
