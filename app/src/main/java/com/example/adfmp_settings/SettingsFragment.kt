@@ -7,16 +7,19 @@ import android.support.v4.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.AdapterView
-import android.widget.ArrayAdapter
-import android.widget.CheckBox
-import android.widget.Spinner
+import android.widget.*
 import androidx.navigation.fragment.findNavController
 import com.example.adfmp_settings.databinding.FragmentSettingsBinding
 
 /**
  * A simple [Fragment] subclass as the second destination in the navigation.
  */
+
+const val vibro = "vibro"
+const val autoCompl = "autoCompl"
+const val autoLose = "autoLose"
+const val turnTime = "turnTime"
+const val currentPack = "currentPack"
 class SettingsFragment : Fragment() {
     var isVibro : Boolean = false
     var isAutoComplete : Boolean = false
@@ -39,11 +42,11 @@ class SettingsFragment : Fragment() {
 
         pref =  this.activity?.getSharedPreferences("Settings", Context.MODE_PRIVATE)
 
-        isVibro = pref?.getBoolean("vibro", true)!!
-        isAutoComplete = pref?.getBoolean("autoCompl", false)!!
-        isAutoLoseExit = pref?.getBoolean("autoLose", false)!!
-        TurnTimeInMinutes = pref?.getInt("turnTime", 0)!!
-        CurrentWordsPackage = pref?.getInt("currentPack", 0)!!
+        isVibro = pref?.getBoolean(vibro, false)!!
+        isAutoComplete = pref?.getBoolean(autoCompl, false)!!
+        isAutoLoseExit = pref?.getBoolean(autoLose, false)!!
+        TurnTimeInMinutes = pref?.getInt(turnTime, 0)!!
+        CurrentWordsPackage = pref?.getInt(currentPack, 0)!!
 
         _binding = FragmentSettingsBinding.inflate(inflater, container, false)
         return binding.root
@@ -55,13 +58,24 @@ class SettingsFragment : Fragment() {
 
         val checkboxVibro : CheckBox = view.findViewById(R.id.checkbox_vibro)
         checkboxVibro.isChecked = isVibro
+        checkboxVibro.setOnCheckedChangeListener { _, isChecked ->
+            isVibro = isChecked
+            saveDataBool(vibro,isChecked)
+        }
 
         val checkboxAutoComplete : CheckBox = view.findViewById(R.id.checkbox_autocomplete)
         checkboxAutoComplete.isChecked = isAutoComplete
+        checkboxAutoComplete.setOnCheckedChangeListener { _, isChecked ->
+            isAutoComplete = isChecked
+            saveDataBool(autoCompl,isChecked)
+        }
 
         val checkboxAutoLose : CheckBox = view.findViewById(R.id.checkbox_lose)
         checkboxAutoLose.isChecked = isAutoLoseExit
-
+        checkboxAutoLose.setOnCheckedChangeListener { _, isChecked ->
+            isAutoLoseExit = isChecked
+            saveDataBool(autoLose,isChecked)
+        }
 
         val arrayOfSpinner : Array<String> = arrayOf("1 минута","30 секунд","Нет Таймера")
         //val timeArray : Array<Int> = arrayOf(60,30,0) // Время в секундах на ход для каждого варианта спинера
@@ -74,7 +88,7 @@ class SettingsFragment : Fragment() {
             }
             override fun onItemSelected( parent: AdapterView<*>?, view: View?, position: Int, id: Long ) {
                 TurnTimeInMinutes = position
-                saveDataInt("turnTime", position)
+                saveDataInt(turnTime, position)
             }
         }
         timeSpinner.setSelection(TurnTimeInMinutes)
@@ -89,7 +103,7 @@ class SettingsFragment : Fragment() {
             }
             override fun onItemSelected( parent: AdapterView<*>?, view: View?, position: Int, id: Long ) {
                 CurrentWordsPackage = position
-                saveDataInt("currentPack", position)
+                saveDataInt(currentPack, position)
             }
         }
         spinnerDict.setSelection(CurrentWordsPackage)
@@ -106,7 +120,7 @@ class SettingsFragment : Fragment() {
 
     override fun onDestroy() {
         super.onDestroy()
-        saveDataBool("vibro", isVibro)
+        saveDataBool(vibro, isVibro)
         saveDataBool("autoCompl", isAutoComplete)
         saveDataBool("autoLose", isAutoLoseExit)
         saveDataInt("turnTime", TurnTimeInMinutes)
