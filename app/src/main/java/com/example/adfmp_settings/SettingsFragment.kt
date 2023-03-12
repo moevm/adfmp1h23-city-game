@@ -7,6 +7,7 @@ import android.support.v4.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.CheckBox
 import androidx.navigation.fragment.findNavController
 import com.example.adfmp_settings.databinding.FragmentSettingsBinding
 
@@ -14,13 +15,13 @@ import com.example.adfmp_settings.databinding.FragmentSettingsBinding
  * A simple [Fragment] subclass as the second destination in the navigation.
  */
 class SettingsFragment : Fragment() {
-    var isVibro : Boolean = false;
-    var isAutoComplete : Boolean = false;
-    var isAutoLoseExit : Boolean = false;
-    var TurnTimeInMinutes : Int = 1;
-    var CurrentWordsPackage : String = "Cities";
+    var isVibro : Boolean = false
+    var isAutoComplete : Boolean = false
+    var isAutoLoseExit : Boolean = false
+    var TurnTimeInMinutes : Int = 1
+    var CurrentWordsPackage : String = "Cities"
 
-    var pref : SharedPreferences? = null;
+    var pref : SharedPreferences? = null
 
     private var _binding: FragmentSettingsBinding? = null
 
@@ -31,11 +32,11 @@ class SettingsFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
 
         pref =  this.activity?.getSharedPreferences("Settings", Context.MODE_PRIVATE)
 
-        isVibro = pref?.getBoolean("vibro", false)!!
+        isVibro = pref?.getBoolean("vibro", true)!!
         isAutoComplete = pref?.getBoolean("autoCompl", false)!!
         isAutoLoseExit = pref?.getBoolean("autoLose", false)!!
         TurnTimeInMinutes = pref?.getInt("turnTime", 1)!!
@@ -48,6 +49,9 @@ class SettingsFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        val checkboxVibro : CheckBox = view.findViewById(R.id.checkbox_vibro)
+        checkboxVibro.isChecked = isVibro
 
         binding.toolbar.setNavigationOnClickListener {
             findNavController().navigate(R.id.action_SecondFragment_to_FirstFragment)
