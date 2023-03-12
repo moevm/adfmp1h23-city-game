@@ -40,7 +40,23 @@ class GameActivity : AppCompatActivity() {
                 }
             }
         })
-
+        findViewById<ImageButton>(R.id.buttonSend).setOnClickListener {
+            if(!filledTextField) return@setOnClickListener
+            appendWordToLog(
+                findViewById<EditText>(R.id.wordInput).text.trim().toString(),
+                "Игрок 1",
+                false
+            )
+            val imm = this.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+            imm.hideSoftInputFromWindow(this.currentFocus?.windowToken, 0)
+            findViewById<EditText>(R.id.wordInput).setText("")
+            val nestedScrollView = findViewById<NestedScrollView>(R.id.scrollView)
+            nestedScrollView.post(Runnable {
+                run() {
+                    nestedScrollView.fullScroll(View.FOCUS_DOWN)
+                }
+            })
+        }
     }
 
     fun appendWordToLog(word: String, playerName: String, flushRight: Boolean) {
