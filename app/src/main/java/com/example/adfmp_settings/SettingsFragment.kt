@@ -21,8 +21,8 @@ class SettingsFragment : Fragment() {
     var isVibro : Boolean = false
     var isAutoComplete : Boolean = false
     var isAutoLoseExit : Boolean = false
-    var TurnTimeInMinutes : Int = 1
-    var CurrentWordsPackage : String = "Cities"
+    var TurnTimeInMinutes : Int = 0
+    var CurrentWordsPackage : Int = 0
 
     var pref : SharedPreferences? = null
 
@@ -43,7 +43,7 @@ class SettingsFragment : Fragment() {
         isAutoComplete = pref?.getBoolean("autoCompl", false)!!
         isAutoLoseExit = pref?.getBoolean("autoLose", false)!!
         TurnTimeInMinutes = pref?.getInt("turnTime", 0)!!
-        CurrentWordsPackage = pref?.getString("currentPack", "Cities")!!
+        CurrentWordsPackage = pref?.getInt("currentPack", 0)!!
 
         _binding = FragmentSettingsBinding.inflate(inflater, container, false)
         return binding.root
@@ -64,7 +64,7 @@ class SettingsFragment : Fragment() {
 
 
         val arrayOfSpinner : Array<String> = arrayOf("1 минута","30 секунд","Нет Таймера")
-        val timeArray : Array<Int> = arrayOf(60,30,0) // Время в секундах на ход для каждого варианта спинера
+        //val timeArray : Array<Int> = arrayOf(60,30,0) // Время в секундах на ход для каждого варианта спинера
         val timeSpinner : Spinner = view.findViewById(R.id.spinner_timer)
         val adapter = ArrayAdapter<String>(this.requireContext(), android.R.layout.simple_spinner_item, arrayOfSpinner)
         timeSpinner.adapter = adapter
@@ -73,17 +73,26 @@ class SettingsFragment : Fragment() {
                 // Всегда что-то выбрано, вроде
             }
             override fun onItemSelected( parent: AdapterView<*>?, view: View?, position: Int, id: Long ) {
-                println("AAAAAAAAAAAAAAAAA")
-                println(position)
                 TurnTimeInMinutes = position
                 saveDataInt("turnTime", position)
             }
         }
-        println("BBBBBBBBBBBBBBBBBBBBBBB")
-        println(TurnTimeInMinutes)
         timeSpinner.setSelection(TurnTimeInMinutes)
 
-        val timeDict : Spinner = view.findViewById(R.id.spinner_dictionary)
+        val spinnerDict : Spinner = view.findViewById(R.id.spinner_dictionary)
+        val arrayOfPacks : Array<String> = arrayOf("Города","Болезни","Напитки")
+        val adapterDict = ArrayAdapter<String>(this.requireContext(), android.R.layout.simple_spinner_item, arrayOfPacks)
+        spinnerDict.adapter = adapterDict
+        spinnerDict.onItemSelectedListener = object : AdapterView.OnItemSelectedListener{
+            override fun onNothingSelected(parent: AdapterView<*>?) {
+                // Всегда что-то выбрано, вроде
+            }
+            override fun onItemSelected( parent: AdapterView<*>?, view: View?, position: Int, id: Long ) {
+                CurrentWordsPackage = position
+                saveDataInt("currentPack", position)
+            }
+        }
+        spinnerDict.setSelection(CurrentWordsPackage)
 
         binding.toolbar.setNavigationOnClickListener {
             findNavController().navigate(R.id.action_SecondFragment_to_FirstFragment)
@@ -101,7 +110,7 @@ class SettingsFragment : Fragment() {
         saveDataBool("autoCompl", isAutoComplete)
         saveDataBool("autoLose", isAutoLoseExit)
         saveDataInt("turnTime", TurnTimeInMinutes)
-        saveDataStr("currentPack", CurrentWordsPackage)
+        saveDataInt("currentPack", CurrentWordsPackage)
     }
 
     fun saveDataBool(key: String, value: Boolean){
@@ -116,10 +125,5 @@ class SettingsFragment : Fragment() {
         editor?.apply()
     }
 
-    fun saveDataStr(key: String, value: String){
-        val editor = pref?.edit()
-        editor?.putString(key,value)
-        editor?.apply()
-    }
 }
 
