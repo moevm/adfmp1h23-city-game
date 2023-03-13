@@ -21,6 +21,10 @@ const val winRatePlayerKey = "winRatePlayer"
 const val gamesAgainstPlayerKey = "gamesAgainstPlayer"
 const val winsAgainstPlayerKey = "winsAgainstPlayer"
 
+fun numToPercents(num : Int): String {
+    return "$num%"
+}
+
 class StatisticsScreen : Fragment() {
     private var _binding: StatisticsScreenBinding? = null
 
@@ -62,7 +66,7 @@ class StatisticsScreen : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         val winRateBotText : TextView = view.findViewById(R.id.winrateagainstbotpercent)
-        winRateBotText.text = "$winRateBot%"
+        winRateBotText.text = numToPercents(winRateBot)
 
         val gamesAgaintsBotText : TextView = view.findViewById(R.id.gamesrateagainstbot)
         gamesAgaintsBotText.text = "$gamesAgainstBot"
@@ -71,7 +75,7 @@ class StatisticsScreen : Fragment() {
         winsAgainstBotText.text = "$winsAgainstBot"
 
         val winRatePlayerText : TextView = view.findViewById(R.id.winrateagainstplayer)
-        winRatePlayerText.text = "$winRatePlayer%"
+        winRatePlayerText.text = numToPercents(winRatePlayer)
 
         val gamesAgaintsPlayerText : TextView = view.findViewById(R.id.gamesagainstplayer)
         gamesAgaintsPlayerText.text = "$gamesAgainstPlayer"
@@ -89,7 +93,7 @@ class StatisticsScreen : Fragment() {
             saveDataInt(gamesAgainstBotKey,gamesAgainstBot)
             saveDataInt(winsAgainstBotKey,winsAgainstBot)
 
-            winRateBotText.text = "$winRateBot%"
+            winRateBotText.text = numToPercents(winRateBot)
             gamesAgaintsBotText.text = "$gamesAgainstBot"
             winsAgainstBotText.text = "$winsAgainstBot"
 
@@ -101,7 +105,7 @@ class StatisticsScreen : Fragment() {
             saveDataInt(gamesAgainstPlayerKey,gamesAgainstPlayer)
             saveDataInt(winsAgainstPlayerKey,winsAgainstPlayer)
 
-            winRatePlayerText.text = "$winRatePlayer%"
+            winRatePlayerText.text = numToPercents(winRatePlayer)
             gamesAgaintsPlayerText.text = "$gamesAgainstPlayer"
             winsAgainstPlayerText.text = "$winsAgainstPlayer"
         }
