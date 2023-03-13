@@ -17,13 +17,21 @@ const val winRateBotKey = "winRateBot"
 const val gamesAgainstBotKey = "gamesAgainstBot"
 const val winsAgainstBotKey = "winsAgainstBot"
 
+const val winRatePlayerKey = "winRatePlayer"
+const val gamesAgainstPlayerKey = "gamesAgainstPlayer"
+const val winsAgainstPlayerKey = "winsAgainstPlayer"
+
 class StatisticsScreen : Fragment() {
     private var _binding: StatisticsScreenBinding? = null
 
     var statisticsStorage : SharedPreferences? = null
-    var winRateBot : Int = 23
-    var gamesAgainstBot : Int = 111
-    var winsAgainstBot = 31
+    var winRateBot : Int = 0
+    var gamesAgainstBot : Int = 0
+    var winsAgainstBot = 0
+
+    var winRatePlayer : Int = 23
+    var gamesAgainstPlayer : Int = 111
+    var winsAgainstPlayer = 31
 
     // This property is only valid between onCreateView and
     // onDestroyView.
@@ -36,9 +44,13 @@ class StatisticsScreen : Fragment() {
 
         statisticsStorage = this.activity?.getSharedPreferences("Statistics", Context.MODE_PRIVATE)
 
-        winRateBot = statisticsStorage?.getInt(winRateBotKey,23)!!
-        gamesAgainstBot = statisticsStorage?.getInt(gamesAgainstBotKey,111)!!
-        winsAgainstBot = statisticsStorage?.getInt(winsAgainstBotKey,31)!!
+        winRateBot = statisticsStorage?.getInt(winRateBotKey,0)!!
+        gamesAgainstBot = statisticsStorage?.getInt(gamesAgainstBotKey,0)!!
+        winsAgainstBot = statisticsStorage?.getInt(winsAgainstBotKey,0)!!
+
+        winRatePlayer = statisticsStorage?.getInt(winRatePlayerKey,22)!!
+        gamesAgainstPlayer = statisticsStorage?.getInt(gamesAgainstPlayerKey,222)!!
+        winsAgainstPlayer = statisticsStorage?.getInt(winsAgainstPlayerKey,333)!!
 
         _binding = StatisticsScreenBinding.inflate(inflater, container, false)
         return binding.root
@@ -72,6 +84,15 @@ class StatisticsScreen : Fragment() {
             gamesAgaintsBotText.text = "$gamesAgainstBot"
             winsAgainstBotText.text = "$winsAgainstBot"
         }
+
+        val winRatePlayerText : TextView = view.findViewById(R.id.winrateagainstplayer)
+        winRatePlayerText.text = "$winRatePlayer%"
+
+        val gamesAgaintsPlayerText : TextView = view.findViewById(R.id.gamesagainstplayer)
+        gamesAgaintsPlayerText.text = "$gamesAgainstPlayer"
+
+        val winsAgainstPlayerText : TextView = view.findViewById(R.id.winsagainstplayer)
+        winsAgainstPlayerText.text = "$winsAgainstPlayer"
 
             binding.toolbarStats.setNavigationOnClickListener {
             findNavController().navigate(R.id.action_statisticsScreen_to_FirstFragment)
