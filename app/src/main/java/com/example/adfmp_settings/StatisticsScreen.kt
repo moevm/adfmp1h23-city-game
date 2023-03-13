@@ -32,7 +32,7 @@ class StatisticsScreen : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
 
         statisticsStorage = this.activity?.getSharedPreferences("Statistics", Context.MODE_PRIVATE)
 
@@ -57,6 +57,21 @@ class StatisticsScreen : Fragment() {
 
         val winsAgainstBotText : TextView = view.findViewById(R.id.winrateagainstbot)
         winsAgainstBotText.text = "$winsAgainstBot"
+
+        val clearStatButton : Button = view.findViewById(R.id.cleanStat)
+        clearStatButton.setOnClickListener{
+            winRateBot = 0
+            gamesAgainstBot = 0
+            winsAgainstBot = 0
+
+            saveDataInt(winRateBotKey,winRateBot)
+            saveDataInt(gamesAgainstBotKey,gamesAgainstBot)
+            saveDataInt(winsAgainstBotKey,winsAgainstBot)
+
+            winRateBotText.text = "$winRateBot%"
+            gamesAgaintsBotText.text = "$gamesAgainstBot"
+            winsAgainstBotText.text = "$winsAgainstBot"
+        }
 
             binding.toolbarStats.setNavigationOnClickListener {
             findNavController().navigate(R.id.action_statisticsScreen_to_FirstFragment)
