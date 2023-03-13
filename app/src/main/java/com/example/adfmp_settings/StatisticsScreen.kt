@@ -70,6 +70,15 @@ class StatisticsScreen : Fragment() {
         val winsAgainstBotText : TextView = view.findViewById(R.id.winrateagainstbot)
         winsAgainstBotText.text = "$winsAgainstBot"
 
+        val winRatePlayerText : TextView = view.findViewById(R.id.winrateagainstplayer)
+        winRatePlayerText.text = "$winRatePlayer%"
+
+        val gamesAgaintsPlayerText : TextView = view.findViewById(R.id.gamesagainstplayer)
+        gamesAgaintsPlayerText.text = "$gamesAgainstPlayer"
+
+        val winsAgainstPlayerText : TextView = view.findViewById(R.id.winsagainstplayer)
+        winsAgainstPlayerText.text = "$winsAgainstPlayer"
+
         val clearStatButton : Button = view.findViewById(R.id.cleanStat)
         clearStatButton.setOnClickListener{
             winRateBot = 0
@@ -83,16 +92,19 @@ class StatisticsScreen : Fragment() {
             winRateBotText.text = "$winRateBot%"
             gamesAgaintsBotText.text = "$gamesAgainstBot"
             winsAgainstBotText.text = "$winsAgainstBot"
+
+            winRatePlayer = 0
+            gamesAgainstPlayer = 0
+            winsAgainstPlayer = 0
+
+            saveDataInt(winRatePlayerKey,winRatePlayer)
+            saveDataInt(gamesAgainstPlayerKey,gamesAgainstPlayer)
+            saveDataInt(winsAgainstPlayerKey,winsAgainstPlayer)
+
+            winRatePlayerText.text = "$winRatePlayer%"
+            gamesAgaintsPlayerText.text = "$gamesAgainstPlayer"
+            winsAgainstPlayerText.text = "$winsAgainstPlayer"
         }
-
-        val winRatePlayerText : TextView = view.findViewById(R.id.winrateagainstplayer)
-        winRatePlayerText.text = "$winRatePlayer%"
-
-        val gamesAgaintsPlayerText : TextView = view.findViewById(R.id.gamesagainstplayer)
-        gamesAgaintsPlayerText.text = "$gamesAgainstPlayer"
-
-        val winsAgainstPlayerText : TextView = view.findViewById(R.id.winsagainstplayer)
-        winsAgainstPlayerText.text = "$winsAgainstPlayer"
 
             binding.toolbarStats.setNavigationOnClickListener {
             findNavController().navigate(R.id.action_statisticsScreen_to_FirstFragment)
