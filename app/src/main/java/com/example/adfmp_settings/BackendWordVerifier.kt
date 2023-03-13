@@ -5,10 +5,11 @@ class BackendWordVerifier(private val db: Map<Char, List<String>>) : WordVerifie
 
     override fun verify(word: String): WordVerifier.VerifierVerdict {
         val lastIndex = history.lastIndex
-        if(lastIndex != -1 && history[lastIndex][history[lastIndex].length-1] != word[0]) {
+        if(lastIndex != -1 && history[lastIndex][history[lastIndex].length-1].lowercaseChar()
+            != word[0].lowercaseChar()) {
             return WordVerifier.VerifierVerdict.LETTER_MISMATCH
         }
-        if(db[word[0]] == null || word !in db[word[0]]!!) {
+        if(db[word[0]] == null || word !in db[word[0].lowercaseChar()]!!) {
             return WordVerifier.VerifierVerdict.UNKNOWN_WORD
         }
         if(word in history) {

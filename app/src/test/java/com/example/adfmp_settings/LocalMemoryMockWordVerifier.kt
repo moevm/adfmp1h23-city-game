@@ -4,11 +4,12 @@ class LocalMemoryMockWordVerifier(private val db: Map<Char, List<String>>) : Wor
     private val history: MutableList<String> = mutableListOf()
 
     override fun verify(word: String): WordVerifier.VerifierVerdict {
+        val chr: Char = word[0].lowercaseChar()
         val lastIndex = history.lastIndex
-        if(lastIndex != -1 && history[lastIndex][history[lastIndex].length-1] != word[0]) {
-            return WordVerifier.VerifierVerdict.LETTER_MISMATCH
+        if(lastIndex != -1 && history[lastIndex][history[lastIndex].length-1].lowercaseChar() != chr) {
+                return WordVerifier.VerifierVerdict.LETTER_MISMATCH
         }
-        if(db[word[0]] == null || word !in db[word[0]]!!) {
+        if(db[chr] == null || word !in db[chr]!!) {
             return WordVerifier.VerifierVerdict.UNKNOWN_WORD
         }
         if(word in history) {

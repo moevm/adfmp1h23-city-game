@@ -25,6 +25,21 @@ class BotTest {
 
     @Test
     fun doesNotRepeatUserWords() {
-
+        val db = mapOf(
+            'a' to listOf("ABAP"),
+            'p' to listOf("Pascal"),
+            'l' to listOf("Lisp", "Lua")
+        )
+        val verifier = LocalMemoryMockWordVerifier(db) as WordVerifier
+        val botDb = mapOf(
+            'a' to mutableListOf("ABAP"),
+            'p' to mutableListOf("Pascal"),
+            'l' to mutableListOf("Lisp", "Lua")
+        )
+        val bot = Bot(botDb, verifier)
+        assertTrue(verifier.verify("ABAP") == WordVerifier.VerifierVerdict.OK)
+        assertEquals(bot.reply("ABAP"), "Pascal")
+        assertTrue(verifier.verify("Lua") == WordVerifier.VerifierVerdict.OK)
+        assertNull(bot.reply("Lua"))
     }
 }

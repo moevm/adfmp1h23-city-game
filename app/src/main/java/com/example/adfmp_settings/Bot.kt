@@ -5,7 +5,7 @@ class Bot(private val knowledgeBase: Map<Char, MutableList<String>>,
 ) {
 
     fun reply(prevWord: String): String? {
-        val possibilities: MutableList<String>? = knowledgeBase[prevWord[prevWord.length-1]]
+        val possibilities: MutableList<String>? = knowledgeBase[prevWord[prevWord.length-1].lowercaseChar()]
         if(possibilities == null) return null
         val iterator = possibilities.iterator()
         while(iterator.hasNext()) {
