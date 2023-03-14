@@ -13,6 +13,7 @@ import android.util.TypedValue
 import android.view.Gravity
 import android.view.View
 import android.view.ViewGroup.LayoutParams.*
+import android.view.inputmethod.EditorInfo
 import android.view.inputmethod.InputMethodManager
 import android.widget.*
 
@@ -40,16 +41,21 @@ class GameActivity : AppCompatActivity() {
                 }
             }
         })
+        val editText = findViewById<EditText>(R.id.wordInput)
         findViewById<ImageButton>(R.id.buttonSend).setOnClickListener {
             if(!filledTextField) return@setOnClickListener
+            val input = editText.text
+                .trim()
+                .toString()
+                .replace(Regex("\\s+"), " ")
             appendWordToLog(
-                findViewById<EditText>(R.id.wordInput).text.trim().toString(),
+                input,
                 "Игрок 1",
                 false
             )
             val imm = this.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
             imm.hideSoftInputFromWindow(this.currentFocus?.windowToken, 0)
-            findViewById<EditText>(R.id.wordInput).setText("")
+            editText.setText("")
             val nestedScrollView = findViewById<NestedScrollView>(R.id.scrollView)
             nestedScrollView.post(Runnable {
                 run() {
