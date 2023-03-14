@@ -13,13 +13,13 @@ import org.junit.Assert.*
 class BotTest {
     @Test
     fun surrenderOnEmptyKnowledgeBase() {
-        val bot = Bot(mapOf(), LocalMemoryMockWordVerifier(mapOf('t' to listOf("tty"))))
+        val bot = Bot(mapOf(), HappyMockWordVerifier())
         assertNull(bot.reply("test"))
     }
 
     @Test
     fun correctAnswerOnRequest() {
-        val verifier = HappyMockWordVerifier()
+        val verifier = HappyMockWordVerifier() as WordVerifier
         val bot = Bot(mapOf(
             'a' to mutableListOf("ABAP"),
             'o' to mutableListOf("OCaml"),
@@ -33,12 +33,7 @@ class BotTest {
 
     @Test
     fun doesNotRepeatUserWords() {
-        val db = mapOf(
-            'a' to listOf("ABAP"),
-            'p' to listOf("Pascal"),
-            'l' to listOf("Lisp", "Lua")
-        )
-        val verifier = LocalMemoryMockWordVerifier(db) as WordVerifier
+        val verifier = BaselessMockWordVerifier() as WordVerifier
         val botDb = mapOf(
             'a' to mutableListOf("ABAP"),
             'p' to mutableListOf("Pascal"),
