@@ -21,8 +21,8 @@ import android.widget.*
 
 class GameActivity : AppCompatActivity() {
     var filledTextField = false
-    val verifier: WordVerifier = LocalMemoryWordVerifier(mapOf('a' to listOf("Ada", "ABAP")))
-    val bot = Bot(mapOf(), verifier)
+    private val verifier: WordVerifier = LocalMemoryWordVerifier(globalTestDB)
+    private val bot = Bot(mapOf(), verifier)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
