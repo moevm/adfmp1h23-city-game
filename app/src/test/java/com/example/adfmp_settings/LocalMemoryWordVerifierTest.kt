@@ -46,4 +46,22 @@ class LocalMemoryWordVerifierTest {
         assertEquals(WordVerifier.VerifierVerdict.OK, verifier.verify("Assembler"))
         assertEquals(WordVerifier.VerifierVerdict.LETTER_MISMATCH, verifier.verify("Assembler"))
     }
+    @Test
+    fun verifyOkLowerCase() {
+        val verifier: WordVerifier = LocalMemoryWordVerifier(db)
+        assertEquals(WordVerifier.VerifierVerdict.OK, verifier.verify("assembler"))
+        assertEquals(WordVerifier.VerifierVerdict.OK, verifier.verify("r"))
+    }
+    @Test
+    fun verifyOkUpperCase() {
+        val verifier: WordVerifier = LocalMemoryWordVerifier(db)
+        assertEquals(WordVerifier.VerifierVerdict.OK, verifier.verify("ASSEMBLER"))
+        assertEquals(WordVerifier.VerifierVerdict.OK, verifier.verify("R"))
+    }
+    @Test
+    fun verifyAlreadyUsedIgnoreCase() {
+        val verifier: WordVerifier = LocalMemoryWordVerifier(db)
+        assertEquals(WordVerifier.VerifierVerdict.OK, verifier.verify("R"))
+        assertEquals(WordVerifier.VerifierVerdict.ALREADY_USED, verifier.verify("r"))
+    }
 }

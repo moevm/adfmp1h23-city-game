@@ -19,6 +19,8 @@ import android.widget.*
 
 class GameActivity : AppCompatActivity() {
     var filledTextField = false
+    val verifier: WordVerifier = LocalMemoryWordVerifier(mapOf('a' to listOf("Ada", "ABAP")))
+    val bot = Bot(mapOf(), verifier)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -48,21 +50,25 @@ class GameActivity : AppCompatActivity() {
                 .trim()
                 .toString()
                 .replace(Regex("\\s+"), " ")
-            appendWordToLog(
-                input,
-                "Игрок 1",
-                false
-            )
-            val imm = this.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
-            imm.hideSoftInputFromWindow(this.currentFocus?.windowToken, 0)
-            editText.setText("")
-            val nestedScrollView = findViewById<NestedScrollView>(R.id.scrollView)
-            nestedScrollView.post(Runnable {
-                run() {
-                    nestedScrollView.fullScroll(View.FOCUS_DOWN)
-                }
-            })
+            processPlayerTurn(input)
+
         }
+    }
+
+    fun processPlayerTurn(input: String) {
+        val verdict = verifier.verify(input)
+        val errorMessage = verdict.errorMessage()
+        if(errorMessage != null) {
+            val duration = Toast.LENGTH_LONG
+            val toast = Toast.makeText(applicationContext, errorMessage, duration)
+            toast.show()
+            return
+        }
+        appendWordToLog(
+            input,
+            "Игрок 1",
+            false
+        )
     }
 
     fun appendWordToLog(word: String, playerName: String, flushRight: Boolean) {
@@ -101,5 +107,15 @@ class GameActivity : AppCompatActivity() {
         playerNameView.gravity = if(flushRight) Gravity.END else Gravity.START
 
         logLayout.addView(playerNameView)
+
+        val imm = this.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+        imm.hideSoftInputFromWindow(this.currentFocus?.windowToken, 0)
+        findViewById<EditText>(R.id.wordInput).setText("")
+        val nestedScrollView = findViewById<NestedScrollView>(R.id.scrollView)
+        nestedScrollView.post(Runnable {
+            run() {
+                nestedScrollView.fullScroll(View.FOCUS_DOWN)
+            }
+        })
     }
 }
