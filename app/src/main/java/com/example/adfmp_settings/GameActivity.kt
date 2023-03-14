@@ -1,10 +1,12 @@
 package com.example.adfmp_settings
 
 import android.content.Context
+import android.content.DialogInterface
 import android.graphics.Color
 import android.os.Bundle
 import android.support.v4.content.res.ResourcesCompat
 import android.support.v4.widget.NestedScrollView
+import android.support.v7.app.AlertDialog
 import android.support.v7.app.AppCompatActivity
 import android.text.Editable
 import android.text.TextWatcher
@@ -69,6 +71,16 @@ class GameActivity : AppCompatActivity() {
             "Игрок 1",
             false
         )
+        val botAnswer = bot.reply(input)
+        if(botAnswer == null) {
+            showEndGameDialog("Победа!", "Робот сдался")
+            return
+        }
+        appendWordToLog(
+            botAnswer,
+            "Робот",
+            true
+        )
     }
 
     fun appendWordToLog(word: String, playerName: String, flushRight: Boolean) {
@@ -117,5 +129,16 @@ class GameActivity : AppCompatActivity() {
                 nestedScrollView.fullScroll(View.FOCUS_DOWN)
             }
         })
+    }
+
+    fun showEndGameDialog(title: String, message: String) {
+        val modal = AlertDialog.Builder(this)
+        modal.setTitle(title)
+        modal.setMessage(message)
+        modal.setPositiveButton("В меню") { dialog, button ->
+            this.finish()
+        }
+        modal.setCancelable(false)
+        modal.show()
     }
 }
