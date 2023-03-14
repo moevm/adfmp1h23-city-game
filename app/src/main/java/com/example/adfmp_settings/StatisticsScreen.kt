@@ -33,9 +33,9 @@ class StatisticsScreen : Fragment() {
     var gamesAgainstBot : Int = 0
     var winsAgainstBot = 0
 
-    var winRatePlayer : Int = 23
-    var gamesAgainstPlayer : Int = 111
-    var winsAgainstPlayer = 31
+    var winRatePlayer : Int = 0
+    var gamesAgainstPlayer : Int = 0
+    var winsAgainstPlayer = 0
 
     // This property is only valid between onCreateView and
     // onDestroyView.
@@ -52,9 +52,9 @@ class StatisticsScreen : Fragment() {
         gamesAgainstBot = statisticsStorage?.getInt(gamesAgainstBotKey,0)!!
         winsAgainstBot = statisticsStorage?.getInt(winsAgainstBotKey,0)!!
 
-        winRatePlayer = statisticsStorage?.getInt(winRatePlayerKey,22)!!
-        gamesAgainstPlayer = statisticsStorage?.getInt(gamesAgainstPlayerKey,222)!!
-        winsAgainstPlayer = statisticsStorage?.getInt(winsAgainstPlayerKey,333)!!
+        winRatePlayer = statisticsStorage?.getInt(winRatePlayerKey,0)!!
+        gamesAgainstPlayer = statisticsStorage?.getInt(gamesAgainstPlayerKey,0)!!
+        winsAgainstPlayer = statisticsStorage?.getInt(winsAgainstPlayerKey,0)!!
 
         _binding = StatisticsScreenBinding.inflate(inflater, container, false)
         return binding.root
@@ -85,25 +85,11 @@ class StatisticsScreen : Fragment() {
 
         val clearStatButton : Button = view.findViewById(R.id.cleanStat)
         clearStatButton.setOnClickListener{
-            winRateBot = 0
-            gamesAgainstBot = 0
-            winsAgainstBot = 0
-
-            saveDataInt(winRateBotKey,winRateBot)
-            saveDataInt(gamesAgainstBotKey,gamesAgainstBot)
-            saveDataInt(winsAgainstBotKey,winsAgainstBot)
+            resetStatisticsData()
 
             winRateBotText.text = numToPercents(winRateBot)
             gamesAgaintsBotText.text = "$gamesAgainstBot"
             winsAgainstBotText.text = "$winsAgainstBot"
-
-            winRatePlayer = 0
-            gamesAgainstPlayer = 0
-            winsAgainstPlayer = 0
-
-            saveDataInt(winRatePlayerKey,winRatePlayer)
-            saveDataInt(gamesAgainstPlayerKey,gamesAgainstPlayer)
-            saveDataInt(winsAgainstPlayerKey,winsAgainstPlayer)
 
             winRatePlayerText.text = numToPercents(winRatePlayer)
             gamesAgaintsPlayerText.text = "$gamesAgainstPlayer"
@@ -118,6 +104,19 @@ class StatisticsScreen : Fragment() {
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+    }
+
+    fun resetStatisticsData(){
+        val editor = statisticsStorage?.edit()
+        editor?.clear()
+
+        winRateBot = 0
+        gamesAgainstBot = 0
+        winsAgainstBot = 0
+
+        winRatePlayer = 0
+        gamesAgainstPlayer = 0
+        winsAgainstPlayer = 0
     }
 
     fun saveDataInt(key: String, value: Int){
