@@ -4,7 +4,7 @@ import org.junit.Test
 
 import org.junit.Assert.*
 
-class selectNumberFromDbTest {
+class NumberFromDbTest {
     private val db = mapOf(
         'a' to listOf("Assembler"),
         'b' to listOf("Basic"),
