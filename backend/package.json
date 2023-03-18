@@ -8,10 +8,12 @@
     "start": "strapi start",
     "build": "strapi build",
     "strapi": "strapi",
-    "lint": "eslint --fix --fix --ext .ts, .js ./",
+    "lint": "eslint --fix ./",
     "ci:deploy:testing": "./tools/setup-variables.sh"
   },
   "devDependencies": {
+    "@babel/eslint-parser": "7.21.3",
+    "babel-eslint": "10.1.0",
     "eslint": "8.36.0"
   },
   "dependencies": {
