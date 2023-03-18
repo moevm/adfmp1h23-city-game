@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 *.iml
 .gradle
 /local.properties
@@ -14,7 +13,6 @@
 .externalNativeBuild
 .cxx
 local.properties
-=======
 ############################
 # OS X
 ############################
@@ -129,4 +127,3 @@ exports
 dist
 build
 .strapi-updater.json
->>>>>>> 5b04c6f (feat: added presets for development)
