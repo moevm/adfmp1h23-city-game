@@ -13,7 +13,7 @@ import org.junit.Assert.*
 class BotTest {
     @Test
     fun surrenderOnEmptyKnowledgeBase() {
-        val bot = Bot(mapOf(), HappyMockWordVerifier())
+        val bot = Bot(mapOf('t' to mutableListOf()), HappyMockWordVerifier())
         assertNull(bot.reply("test"))
     }
 
@@ -51,7 +51,8 @@ class BotTest {
         val bot = Bot(mapOf(
             'a' to mutableListOf("ABAP"),
             'p' to mutableListOf("Pascal"),
-            'l' to mutableListOf("Lisp", "Lua")
+            'l' to mutableListOf("Lisp", "Lua"),
+            'o' to mutableListOf()
         ), ErrorMockWordVerifier())
         assertNull(bot.reply("Go"))
         assertNull(bot.reply("Ada"))
