@@ -57,4 +57,12 @@ class BotTest {
         assertNull(bot.reply("Go"))
         assertNull(bot.reply("Ada"))
     }
+
+    @Test
+    fun answerIgnoringUselessSymbol() {
+        val bot = Bot(mapOf(
+            'c' to mutableListOf("C#")
+        ), BaselessMockWordVerifier())
+        assertEquals("C#", bot.reply("C++"))
+    }
 }

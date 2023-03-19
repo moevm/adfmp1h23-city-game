@@ -1,6 +1,5 @@
 package com.example.adfmp_settings
 
-import android.util.Log
 import kotlin.random.Random
 
 class Bot(private val knowledgeBase: Map<Char, MutableList<String>>,
@@ -11,9 +10,7 @@ class Bot(private val knowledgeBase: Map<Char, MutableList<String>>,
         var possibilities: MutableList<String>? = mutableListOf()
         for(lastIndex in prevWord.length-1 downTo 0) {
             val lastChar = prevWord[lastIndex].lowercaseChar()
-            Log.d("reply", "$lastIndex: '$lastChar'")
             possibilities = knowledgeBase[lastChar]
-            Log.d("reply", "$possibilities")
             if(possibilities != null) break
         }
         if(possibilities == null) throw java.lang.IllegalStateException(
