@@ -1,6 +1,5 @@
 {
   "name": "android-strapi",
-  "private": true,
   "version": "0.1.0",
   "description": "A Strapi application",
   "scripts": {
@@ -8,13 +7,18 @@
     "start": "strapi start",
     "build": "strapi build",
     "strapi": "strapi",
+    "lint": "eslint --fix ./",
     "ci:deploy:testing": "./tools/setup-variables.sh"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "@babel/eslint-parser": "7.21.3",
+    "babel-eslint": "10.1.0",
+    "eslint": "8.36.0"
+  },
   "dependencies": {
-    "@strapi/strapi": "4.6.1",
-    "@strapi/plugin-users-permissions": "4.6.1",
     "@strapi/plugin-i18n": "4.6.1",
+    "@strapi/plugin-users-permissions": "4.6.1",
+    "@strapi/strapi": "4.6.1",
     "pg": "8.8.0"
   },
   "author": {
