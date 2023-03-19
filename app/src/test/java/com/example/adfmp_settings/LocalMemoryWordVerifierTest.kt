@@ -8,7 +8,8 @@ class LocalMemoryWordVerifierTest {
     private val db = mapOf(
         'a' to listOf("Assembler"),
         'b' to listOf("Basic"),
-        'r' to listOf("R")
+        'r' to listOf("R"),
+        'c' to listOf("C", "C++")
     )
 
     @Test
@@ -63,5 +64,17 @@ class LocalMemoryWordVerifierTest {
         val verifier: WordVerifier = LocalMemoryWordVerifier(db)
         assertEquals(WordVerifier.VerifierVerdict.OK, verifier.verify("R"))
         assertEquals(WordVerifier.VerifierVerdict.ALREADY_USED, verifier.verify("r"))
+    }
+    @Test
+    fun verifyIgnoreUselessTrailingChars() {
+        val verifier: WordVerifier = LocalMemoryWordVerifier(db)
+        assertEquals(WordVerifier.VerifierVerdict.OK, verifier.verify("C++"))
+        assertEquals(WordVerifier.VerifierVerdict.OK, verifier.verify("C"))
+    }
+    @Test
+    fun verifyIgnoreUselessTrailingCharsLowerCase() {
+        val verifier: WordVerifier = LocalMemoryWordVerifier(db)
+        assertEquals(WordVerifier.VerifierVerdict.OK, verifier.verify("c++"))
+        assertEquals(WordVerifier.VerifierVerdict.OK, verifier.verify("c"))
     }
 }

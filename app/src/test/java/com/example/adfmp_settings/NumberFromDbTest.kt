@@ -13,7 +13,11 @@ class NumberFromDbTest {
 
     @Test
     fun selectNone() {
-        assertEquals(0, selectNumberFromDb(db, 0).size)
+        val result = selectNumberFromDb(db, 0)
+        assertEquals(db.size, result.size)
+        for(list in result.values) {
+            assertEquals(list, mutableListOf<String>())
+        }
     }
     @Test
     fun selectAll() {
@@ -34,9 +38,9 @@ class NumberFromDbTest {
     @Test
     fun selectSome() {
         val result = selectNumberFromDb(db, 1)
-        assertEquals(1, result.size)
+        assertEquals(db.size, result.size)
         for(key in db.keys) {
-            if(result[key] == null) continue
+            if(result[key] == mutableListOf<String>()) continue
             assertTrue(db[key]!!.containsAll(result[key]!!))
         }
     }
